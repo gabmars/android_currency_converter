@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:id="@+id/constraintLayout"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".ui.main.PlaceholderFragment"
+                                                   android:background="@color/backgroundGeneral">
+
+    <Button
+            android:text="Конвертировать"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/convert_button" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/to_value" android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" android:layout_marginRight="16dp" android:layout_marginEnd="16dp"
+            app:layout_constraintHorizontal_bias="0.0" android:textColor="@color/textGeneral"
+            android:background="@drawable/button_back"/>
+    <TextView
+            android:text="Конвертировать из"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" android:id="@+id/from_title"
+            android:layout_marginTop="32dp" app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/textGeneral"/>
+    <TextView
+            android:text="Конвертировать в"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" android:id="@+id/to_title" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/from_value" android:textColor="@color/textGeneral"/>
+    <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/from_currencies" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/from_value"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintTop_toTopOf="@+id/from_value"
+            app:layout_constraintBottom_toBottomOf="@+id/from_value" android:theme="@style/AppTheme"
+            android:background="@drawable/spinner_back"/>
+    <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/to_currencies"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/to_value" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/to_value" android:background="@drawable/spinner_back"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/from_value"
+            app:layout_constraintStart_toEndOf="@+id/from_currencies" android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="16dp"
+            android:hint="Введите значение"
+            android:gravity="left|center_vertical" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/from_title" android:textColor="@color/textGeneral"
+            android:backgroundTint="@color/colorPrimary"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/to_value" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+            app:layout_constraintStart_toEndOf="@+id/to_currencies" android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:hint="Введите значение"
+            android:gravity="left|center_vertical"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/to_title"
+            android:visibility="invisible" android:textColor="@color/textGeneral"
+            android:backgroundTint="@color/colorPrimary"/>
+    <ImageView
+            android:src="@drawable/arrow_down"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/imageView" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/to_value" app:layout_constraintTop_toBottomOf="@+id/from_value"
+            app:layout_constraintDimensionRatio="1:1" android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/from_value" app:layout_constraintStart_toStartOf="@+id/from_value"
+            android:minHeight="50dp" android:minWidth="50dp"/>
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/to_value_noneditable"
+            app:layout_constraintStart_toStartOf="@+id/to_value"
+            app:layout_constraintBottom_toBottomOf="@+id/to_value" app:layout_constraintTop_toTopOf="@+id/to_value"
+            app:layout_constraintEnd_toEndOf="@+id/to_value" android:textSize="18sp"
+            android:textColor="@color/textGeneral"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
