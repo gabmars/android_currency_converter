@@ -27,8 +27,7 @@ import androidx.core.widget.addTextChangedListener
 import com.example.tinkoff_android_exam.SharedPrefsCache
 import kotlin.Exception
 import android.content.SharedPreferences
-
-
+import kotlinx.android.synthetic.main.fragment_main.*
 
 
 /**
@@ -136,6 +135,7 @@ class PlaceholderFragment : Fragment() {
 
 //        проверка напонения списка доступных валют
         if (!from_currencies.isEmpty()) {
+            progressBar.visibility = View.VISIBLE
 //                формирование токена запроса в АПИ
             val api_query = "${from_currencies.selectedItem}_${to_currencies.selectedItem}"
 
@@ -151,7 +151,7 @@ class PlaceholderFragment : Fragment() {
             }
             if (cacher.has(api_query) && (!isOnline || result == -1.0)) {
                 result = cacher.get(api_query)!!.toDouble()
-            } else {
+            } else if (!cacher.has(api_query) && !isOnline && result == -1.0) {
                 Toast.makeText(context, "Нет подключения к интернету", Toast.LENGTH_LONG).show()
             }
 
@@ -160,6 +160,7 @@ class PlaceholderFragment : Fragment() {
             } else {
                 to_value_noneditable.setText("")
             }
+            progressBar.visibility = View.INVISIBLE
         } else {
 //            если список валют не наполнен, предпринимается попытка переподключения к АПИ
             checkConnection()
@@ -181,6 +182,7 @@ class PlaceholderFragment : Fragment() {
 //        проверка что текущее изменение является изменением пользователя, а не программным
         if (!changeLock) {
             if (!from_currencies.isEmpty()) {
+                progressBar.visibility = View.VISIBLE
 //                формирование токена запроса в АПИ
                 var api_query = ""
                 if (toUp) {
@@ -202,7 +204,7 @@ class PlaceholderFragment : Fragment() {
                 }
                 if (cacher.has(api_query) && (!isOnline || result == -1.0)) {
                     result = cacher.get(api_query)!!.toDouble()
-                } else {
+                } else if (!cacher.has(api_query) && !isOnline && result == -1.0) {
                     Toast.makeText(context, "Нет подключения к интернету", Toast.LENGTH_LONG).show()
                 }
 
@@ -215,6 +217,7 @@ class PlaceholderFragment : Fragment() {
                 }
 //                освобождение блокировки
                 changeLock = false
+                progressBar.visibility = View.INVISIBLE
             } else {
 //            если список валют не наполнен, предпринимается попытка переподключения к АПИ
                 checkConnection()
@@ -287,7 +290,7 @@ class PlaceholderFragment : Fragment() {
                     from_curr_selected = position
 //                    запускается пересчет значения при изменении валюты
                     buttonConvert(root)
-                    onlineConvert(root, from_value, to_value, false)
+                    onlineConvert(root, to_value, from_value, true)
                 }
             }
 
@@ -308,7 +311,7 @@ class PlaceholderFragment : Fragment() {
                     }
                     to_curr_selected = position
                     buttonConvert(root)
-                    onlineConvert(root, to_value, from_value, true)
+                    onlineConvert(root, from_value, to_value, false)
                 }
             }
         } else {
@@ -340,9 +343,9 @@ class PlaceholderFragment : Fragment() {
             imageView.setImageResource(if (it == 1) R.drawable.arrow_down else R.drawable.arrow_up)
 //            запрещаем редактирование целевого значения для первого варианта решения
             to_value.visibility = if (it == 1) View.INVISIBLE else View.VISIBLE
-            to_value_noneditable.visibility = if (it == 1) View.VISIBLE else View.GONE
+            to_value_noneditable.visibility = if (it == 1) View.VISIBLE else View.INVISIBLE
 //            скрываем кнопку для второго варианта решения
-            convert_button.visibility = if (it == 1) View.VISIBLE else View.GONE
+            convert_button.visibility = if (it == 1) View.VISIBLE else View.INVISIBLE
         })
 
 //        изменение надписи на кнопке при отсутствии интренет соединения
