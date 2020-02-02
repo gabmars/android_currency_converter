@@ -135,7 +135,7 @@ class PlaceholderFragment : Fragment() {
 
 //        проверка напонения списка доступных валют
         if (!from_currencies.isEmpty()) {
-            progressBar.visibility = View.VISIBLE
+//            progressBar.visibility = View.VISIBLE
 //                формирование токена запроса в АПИ
             val api_query = "${from_currencies.selectedItem}_${to_currencies.selectedItem}"
 
@@ -160,7 +160,7 @@ class PlaceholderFragment : Fragment() {
             } else {
                 to_value_noneditable.setText("")
             }
-            progressBar.visibility = View.INVISIBLE
+//            progressBar.visibility = View.INVISIBLE
         } else {
 //            если список валют не наполнен, предпринимается попытка переподключения к АПИ
             checkConnection()
@@ -182,7 +182,7 @@ class PlaceholderFragment : Fragment() {
 //        проверка что текущее изменение является изменением пользователя, а не программным
         if (!changeLock) {
             if (!from_currencies.isEmpty()) {
-                progressBar.visibility = View.VISIBLE
+//                progressBar.visibility = View.VISIBLE
 //                формирование токена запроса в АПИ
                 var api_query = ""
                 if (toUp) {
@@ -217,7 +217,7 @@ class PlaceholderFragment : Fragment() {
                 }
 //                освобождение блокировки
                 changeLock = false
-                progressBar.visibility = View.INVISIBLE
+//                progressBar.visibility = View.INVISIBLE
             } else {
 //            если список валют не наполнен, предпринимается попытка переподключения к АПИ
                 checkConnection()
